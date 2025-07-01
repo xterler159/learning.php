@@ -23,6 +23,11 @@ abstract class Animal
     return $this->nom;
   }
 
+  public function getAge()
+  {
+    return $this->age;
+  }
+
   abstract public function parler(): void;
 }
 
@@ -63,15 +68,21 @@ class Cat extends Animal
 
 class Refuge
 {
-  public array $animals = [];
+  private array $animals = [];
 
   public function addAnimal(Animal $animal): void
   {
     $this->animals[] = $animal;
   }
 
-  public function afficherAnimaux(): void
+  public function afficherAnimaux(bool $sortByAge = false): void
   {
+    if ($sortByAge) {
+      usort($this->animals, function ($a, $b) {
+        return $a->getAge() <=> $b->getAge();
+      });
+    }
+
     for ($i = 0; $i < count($this->animals); $i++) {
       // on assigne la valeur dans le tableau
       $animal = $this->animals[$i];
