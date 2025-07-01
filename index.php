@@ -10,4 +10,6 @@ $refuge->addAnimal(new Cat("Batou", 10));
 $refuge->addAnimal(new Dog("Rex", 15));
 
 $refuge->afficherAnimaux(sortByAge: true);
-
+$refuge->removeAnimal("Rex");
+echo "\n";
+$refuge->afficherAnimaux();

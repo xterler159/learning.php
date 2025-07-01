@@ -34,8 +34,8 @@ abstract class Animal
 class Dog extends Animal
 {
   // on a pas besoin de les re-définir car on les définit déjà dans la class abstraite Animal
-//  protected string $nom;
-//  protected int $age;
+  //  protected string $nom;
+  //  protected int $age;
 
   public function __construct(string $nom, int $age)
   {
@@ -51,9 +51,9 @@ class Dog extends Animal
 class Cat extends Animal
 {
   // on a pas besoin de les re-définir car on les définit déjà dans la class abstraite Animal
-//  protected string $nom;
-//  protected int $age;
-//  protected string $type;
+  //  protected string $nom;
+  //  protected int $age;
+  //  protected string $type;
 
   public function __construct($nom, $age)
   {
@@ -89,6 +89,18 @@ class Refuge
 
       // on affiche le nom de l'animal en question
       echo $animal->getInfos();
+    }
+  }
+
+  public function removeAnimal(string $nomAnimalASupprimer): void
+  {
+    foreach ($this->animals as $index => $animal) {
+      $nomAnimal = $animal->getNom();
+
+      if ($nomAnimal === $nomAnimalASupprimer) {
+        array_splice($this->animals, $index, 1);
+        break;
+      }
     }
   }
 }
