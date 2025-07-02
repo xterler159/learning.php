@@ -94,13 +94,12 @@ class Refuge
 
   public function removeAnimal(string $nomAnimalASupprimer): void
   {
-    foreach ($this->animals as $index => $animal) {
-      $nomAnimal = $animal->getNom();
+    $this->animals = array_filter(
+      $this->animals,
+      // array_filter veut une valeur false pour que ça supprime la valeur ciblée.
+      fn($animal) => $animal->getNom() !== $nomAnimalASupprimer
+    );
 
-      if ($nomAnimal === $nomAnimalASupprimer) {
-        array_splice($this->animals, $index, 1);
-        break;
-      }
-    }
+    $this->animals = array_values($this->animals); // re-ajuster les index
   }
 }
